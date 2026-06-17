@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using eCommerce.Core.ServiceContracts;
+using eCommerce.Core.Services;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace eCommerce.Core
 {
@@ -12,8 +14,7 @@ namespace eCommerce.Core
         /// <returns></returns>
         public static IServiceCollection AddCoreServices(this IServiceCollection services)
         {
-            // todo - add all services related to core project
-
+            services.AddScoped<IUsersService, UsersService>();
             return services;
         }
     }

@@ -14,7 +14,7 @@ namespace eCommerce.Infrastructure
         /// <returns></returns>
         public static IServiceCollection AddInfrastructureServices(this IServiceCollection services)
         {
-            services.AddSingleton<IUsersRepository, UsersRepository>();
+            services.AddScoped<IUsersRepository, UsersRepository>();
             return services;
         }
     }

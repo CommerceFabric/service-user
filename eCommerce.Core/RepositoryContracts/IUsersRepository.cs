@@ -20,7 +20,7 @@ namespace eCommerce.Core.RepositoryContracts
         /// <param name="email"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        Task<ApplicationUser?> GetUserByEmailAndPasswordAsync(string email, string password);
+        Task<ApplicationUser?> GetUserByEmailAndPasswordAsync(string email, string password); // todo - this is insecure, will soon be replaced with Azure AD B2C auth, just here as a temporary measure to get the project working with a simple login system.
 
 
     }
