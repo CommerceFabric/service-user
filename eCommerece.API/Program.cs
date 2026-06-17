@@ -1,5 +1,6 @@
 using eCommerce.Infrastructure;
 using eCommerce.Core;
+using eCommerece.API.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,9 @@ builder.Services.AddControllers();
 
 // Build the web application
 var app = builder.Build();
+
+// Use custom exception handling middleware
+app.UseExceptionHandlingMiddleware();
 
 // Enable routing, authentication, authoriation, and controller mapping
 app.UseRouting();
