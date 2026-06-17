@@ -24,6 +24,6 @@ namespace eCommerce.Core.ServiceContracts
         /// </summary>
         /// <param name="registerRequest">The registration request containing the user's email and password.</param>
         /// <returns>An AuthenticationResponse object containing the registration result and JWT token if successful.</returns>
-        Task<AuthenticationResponse> Register(LoginRequest registerRequest);
+        Task<AuthenticationResponse> Register(RegisterRequest registerRequest);
     }
 }
