@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using eCommerce.Core.RepositoryContracts;
+using eCommerce.Infrastructure.Repositories;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace eCommerce.Infrastructure
 {
@@ -12,8 +14,7 @@ namespace eCommerce.Infrastructure
         /// <returns></returns>
         public static IServiceCollection AddInfrastructureServices(this IServiceCollection services)
         {
-            // todo - add all services related to infrastructure project
-
+            services.AddSingleton<IUsersRepository, UsersRepository>();
             return services;
         }
     }
