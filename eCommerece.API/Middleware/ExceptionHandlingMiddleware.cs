@@ -33,7 +33,7 @@
 
                 await httpContext.Response.WriteAsJsonAsync(new
                 {
-                    message = "An unexpected error occurred.",
+                    message = ex?.Message ?? "An unexpected error occurred.",
                     type = ex.GetType().Name
                 });
             }

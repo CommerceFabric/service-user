@@ -21,7 +21,7 @@ namespace eCommerce.API.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register(RegisterRequest registerRequest)
         {
-            if(registerRequest == null) return BadRequest("Register request cannot be null");
+            if(registerRequest == null) throw new Exception("Register request cannot be null");
 
             var result = await _usersService.Register(registerRequest);
 
@@ -32,7 +32,7 @@ namespace eCommerce.API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginRequest loginRequest)
         {
-            if(loginRequest == null) return BadRequest("Login request cannot be null");
+            if(loginRequest == null) throw new Exception("Login request cannot be null");
 
             var result = await _usersService.Login(loginRequest);
 

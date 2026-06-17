@@ -1,6 +1,7 @@
 using eCommerce.Infrastructure;
 using eCommerce.Core;
 using eCommerece.API.Middleware;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +10,10 @@ builder.Services.AddInfrastructureServices();
 builder.Services.AddCoreServices();
 
 // Add controllers to the service collection
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options => {
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+});
 
 // Build the web application
 var app = builder.Build();
