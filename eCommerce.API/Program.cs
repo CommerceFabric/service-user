@@ -1,11 +1,10 @@
-using eCommerce.Infrastructure;
-using eCommerce.Core;
 using eCommerce.API.Middleware;
-using System.Text.Json.Serialization;
+using eCommerce.Core;
 using eCommerce.Core.Mappers;
-using FluentValidation;
+using eCommerce.Infrastructure;
 using FluentValidation.AspNetCore;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,17 +28,42 @@ builder.Services.AddAutoMapper(
 // Add Fluentvalidations to use as contract validators for the DTOs
 builder.Services.AddFluentValidationAutoValidation();
 
+// Add swagger generation to create API documentation
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+// Add Cors Services
+builder.Services.AddCors(options =>
+{
+    // Configure a default CORS policy that allows any origin, method, and header
+    options.AddDefaultPolicy(builder =>
+    {
+        builder.AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader();
+    });
+});
+
 // Build the web application
 var app = builder.Build();
 
 // Use custom exception handling middleware
 app.UseExceptionHandlingMiddleware();
 
-// Enable routing, authentication, authoriation, and controller mapping
+// Enable routing
 app.UseRouting();
+
+// Enable swagger UI and endpoint for API documentation
+app.UseSwagger(); // adds endpoint that can serve the swagger.json
+app.UseSwaggerUI(); // adds swagger UI to visualize and interact with the API's resources
+app.UseCors(); // Enable Cross-Origin Resource Sharing (CORS) using the configured policy, controlling which origins, methods, and headers can access this API.
+
+// Enable authentication and authorization middleware
 app.UseAuthentication();
 app.UseAuthorization();
-app.MapControllers();
+
+// Maps controller endpoints to the application
+app.MapControllers(); 
 
 // Run the web application
 app.Run();

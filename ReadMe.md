@@ -18,12 +18,14 @@ CREATE TABLE users (
 # Technical INFO
 
 - Uses Dapper as the ORM (not EF)
+    - While EF is better for change tracking (migrations), and has LINQ support
+    - Dapper is better for high-performance latency-sensitive Microservices as can execute raw sql with minimal overhead and not relying on how LINQ is decomiled into sql
 - Dependency Injection
 - Uses AutoMapper
 - Clean Architecture Principles (split sub-projects: API | Core | Infrastructure )
 - Has injected Exception Handling Middleware
 - Has Fluent Validation for confirming correctness of DTO's
-- Uses Swagger for API
+- Uses Swagger for interactive API documentation
 
 # Next steps:
 
