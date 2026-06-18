@@ -25,7 +25,7 @@ namespace eCommerce.API.Controllers
 
             var result = await _usersService.Register(registerRequest);
 
-            if (result == null || !result.Success) return BadRequest(result);
+            if (result == null || !result.Success) return Unauthorized(result);
             return Ok(result);
         }
 
