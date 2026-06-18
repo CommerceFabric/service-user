@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="CommerceFabric.Core/CommerceFabric.Core.csproj" />
+  <Project Path="CommerceFabric.Infrastructure/CommerceFabric.Infrastructure.csproj" />
+  <Project Path="CommerceFabric.API/CommerceFabric.API.csproj" />
+</Solution>
