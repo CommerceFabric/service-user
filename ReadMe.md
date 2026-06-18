@@ -1,17 +1,16 @@
 # Requirements
 
 - PostgresSQL 
-    - Seeding (currently manual, soon will be replaced - probably in docker?)
-        - Create a database called eCommerceUsers 
-        - Create a table using:
+    - Seeding- must be done manually as we are using Dapper
         
 ```sql
-create table users (
-    user_id uuid primary key,
-    person_name varchar(50) not null,
-    email varchar(50) not null,
-    password varchar(50) not null,
-    gender varchar(50) not null
+CREATE TABLE users (
+    user_id UUID PRIMARY KEY,
+    person_name VARCHAR(50) NOT NULL,
+    email VARCHAR(50) NOT NULL,
+    password VARCHAR(50) NOT NULL,
+    gender VARCHAR(50) NOT NULL,
+    CONSTRAINT email_unique UNIQUE (email)
 );
 ```
 
@@ -33,6 +32,7 @@ create table users (
 - add in Outbox pattern + Saga workflow
 - add in Idemptotency
 - add in a proper Observability Layer (eg Serilog structured logs + correlation IDs) 
+- maybe do CQRS with MediatR?
 
 ## additional repos
 - maybe also add in an admin page or similar which lets you health check all the different microservices etc. + view logs
