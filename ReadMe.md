@@ -1,6 +1,6 @@
 # Requirements
 
-- PostgresSQL 
+- [PostgresSQL](https://www.enterprisedb.com/downloads/postgres-postgresql-downloads) 18.0.0 or higher
     - Seeding- must be done manually as we are using Dapper
         
 ```sql
@@ -38,3 +38,4 @@ CREATE TABLE users (
 - Has injected Exception Handling Middleware
 - Has Fluent Validation for confirming correctness of DTO's
 - Uses Swagger for interactive API documentation
+- Uses PostgresSQL as the database
