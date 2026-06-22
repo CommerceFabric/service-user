@@ -36,6 +36,7 @@ CREATE TABLE users (
 - Uses AutoMapper
 - Clean Architecture Principles (split sub-projects: API | Core | Infrastructure )
 - Has injected Exception Handling Middleware
-- Has Fluent Validation for confirming correctness of DTO's
+- Has Fluent Validation for confirming correctness of DTO's, automatically validated incoming requests through FluentValidation's MVC Pipeline Middleware
 - Uses Swagger for interactive API documentation
 - Uses PostgresSQL as the database
+- Uses traditional Controller-based endpoints
