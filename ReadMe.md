@@ -16,6 +16,15 @@ CREATE TABLE users (
 
 # Technical INFO
 
+## Architecture
+
+- Uses the Clean Architecture (API / Core / Infrastructure) pattern, which keeps business rules independent of frameworks, databases, and external services.
+    - API – Exposes endpoints, handles requests/responses, authentication, and application configuration.
+    - Core – Contains domain models, business rules, use cases, and contracts/interfaces for external dependencies.
+    - Infrastructure – Implements persistence, external integrations, and other technical concerns defined by the Core.
+
+## Technical Stack
+
 - Uses Dapper as the ORM (not EF)
     - While EF is better for change tracking (migrations), and has LINQ support
     - Dapper is better for high-performance latency-sensitive Microservices as can execute raw sql with minimal overhead and not relying on how LINQ is decomiled into sql
