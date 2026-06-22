@@ -14,7 +14,7 @@ CREATE TABLE users (
 );
 ```
 
-# Technical INFO
+# Technical Info
 
 ## Architecture
 
@@ -22,6 +22,10 @@ CREATE TABLE users (
     - API – Exposes endpoints, handles requests/responses, authentication, and application configuration.
     - Core – Contains domain models, business rules, use cases, and contracts/interfaces for external dependencies.
     - Infrastructure – Implements persistence, external integrations, and other technical concerns defined by the Core.
+
+- The Layered Architecture is an alternative approach that organizes the application into layers (Presentation, Business Logic, Data Access), this is done to separate concerns and promote maintainability, but it can lead to tight coupling between layers and less flexibility in adapting to changes.
+    - I implemented the [Product Service](https://github.com/CommerceFabric/service-products) Micro-Service using this approach to demonstrate the differences between the two architectures and how Clean Architecture can provide better separation of concerns and flexibility in adapting to changes.
+
 
 ## Technical Stack
 
