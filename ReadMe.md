@@ -16,6 +16,13 @@ CREATE TABLE users (
 ```
 
 - After doing so, populate using secrets.json in visualStudio with the connection string for that Db.
+```json
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=localhost;Database=userService;User Id=postgres;Password=yourPasswordHere!;"
+  }
+}
+```
 
 # Technical Info
 
