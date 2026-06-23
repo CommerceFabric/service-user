@@ -2,7 +2,8 @@
 
 - [PostgresSQL](https://www.enterprisedb.com/downloads/postgres-postgresql-downloads) 18.0.0 or higher
     - Seeding- must be done manually as we are using Dapper
-        
+
+- Use pgAdmin to create a new Database called CommerceFabricUsers, then populate it using the below query.
 ```sql
 CREATE TABLE users (
     user_id UUID PRIMARY KEY,
@@ -13,6 +14,8 @@ CREATE TABLE users (
     CONSTRAINT email_unique UNIQUE (email)
 );
 ```
+
+- After doing so, populate using secrets.json in visualStudio with the connection string for that Db.
 
 # Technical Info
 
