@@ -6,8 +6,8 @@
 - Use pgAdmin to create a new Database called CommerceFabricUsers, then populate it using the below query.
 ```sql
 CREATE TABLE users (
-    user_id UUID PRIMARY KEY,
-    person_name VARCHAR(50) NOT NULL,
+    userid UUID PRIMARY KEY,
+    personname VARCHAR(50) NOT NULL,
     email VARCHAR(50) NOT NULL,
     password VARCHAR(50) NOT NULL,
     gender VARCHAR(50) NOT NULL,
