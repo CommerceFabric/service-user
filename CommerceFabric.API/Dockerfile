@@ -4,8 +4,8 @@
 FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS base
 USER $APP_UID
 WORKDIR /app
-EXPOSE 8080
-EXPOSE 8081
+EXPOSE 9090
+EXPOSE 9091
 
 
 # This stage is used to build the service project
@@ -27,4 +27,6 @@ RUN dotnet publish "./CommerceFabric.API.csproj" -c $BUILD_CONFIGURATION -o /app
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+ENV COMMERCEFABRIC_USERSERVICE_DB_HOST=postgressql-userservice
+ENV COMMERCEFABRIC_USERSERVICE_DB_PASSWORD=admin
 ENTRYPOINT ["dotnet", "CommerceFabric.API.dll"]

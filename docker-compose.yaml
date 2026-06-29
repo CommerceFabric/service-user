@@ -1,0 +1,34 @@
+version: "5.1.4"
+
+services:
+  postgressql-userservice:
+    image: postgres:18.0
+    container_name: postgressql-userservice
+    environment:
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: userService
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./Resources/docker/postgres-init:/docker-entrypoint-initdb.d
+    networks:
+      - commercefabric-network
+    restart: unless-stopped
+
+  userservice:
+    image: danielmusselwhite/commercefabric_user_microservice:1.0.0
+    container_name: userservice
+    build:
+      context: .
+      dockerfile: CommerceFabric.API/Dockerfile
+    ports:
+      - "9090:8080"
+    networks:
+      - commercefabric-network
+    depends_on:
+      - postgressql-userservice
+    restart: unless-stopped
+
+networks:
+  commercefabric-network:
+    external: false

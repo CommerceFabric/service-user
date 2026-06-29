@@ -2,17 +2,28 @@
 
 - [PostgresSQL](https://www.enterprisedb.com/downloads/postgres-postgresql-downloads) 18.0.0 or higher
     - Seeding- must be done manually as we are using Dapper
-        
-```sql
-CREATE TABLE users (
-    user_id UUID PRIMARY KEY,
-    person_name VARCHAR(50) NOT NULL,
-    email VARCHAR(50) NOT NULL,
-    password VARCHAR(50) NOT NULL,
-    gender VARCHAR(50) NOT NULL,
-    CONSTRAINT email_unique UNIQUE (email)
-);
+- [Docker](https://www.docker.com/products/docker-desktop/) Desktop 4.79 or higher
+- [Docker Compose](https://docs.docker.com/compose/install/) 5.1.4 or higher
+
+## Initial Database Seed (temporary manual setup)
+
+Run the following SQL to initialise and seed the database (as we use Dapper in this microservice, we do not have migrations or automatic seeding):
+- [db_users_seed.sql](Resources/docker/postgres-init/db_users_seed.sql)
+
+# Running the app through docker
+
+- Build and run the docker-compose file
+```bash
+docker-compose -f docker-compose.yaml up --build
 ```
+- Can access the service's Swagger UI at http://localhost:9090/swagger/index.html
+
+- stop the containers
+```bash
+docker-compose -f docker-compose.yaml down
+```
+
+- If you wish to run docker manually instead of through docker-compose, or wish to push the docker image to Docker Hub, follow the instructions in [ManualDockerInstructions.md](Docs/ManualDockerInstructions.md)
 
 # Technical Info
 

@@ -13,7 +13,10 @@ namespace CommerceFabric.Infrastructure.DbContext
         public DapperDbContext(IConfiguration configuration)
         {
             _configuration = configuration;
-            string? connectionString = _configuration.GetConnectionString("DefaultConnection");
+            string? connectionString = _configuration.GetConnectionString("DefaultConnection")!;
+            connectionString = connectionString.Replace("$COMMERCEFABRIC_USERSERVICE_DB_HOST", Environment.GetEnvironmentVariable("COMMERCEFABRIC_USERSERVICE_DB_HOST") ?? "localhost");
+            connectionString = connectionString.Replace("$COMMERCEFABRIC_USERSERVICE_DB_PASSWORD", Environment.GetEnvironmentVariable("COMMERCEFABRIC_USERSERVICE_DB_PASSWORD") ?? "admin");
+
             if (string.IsNullOrEmpty(connectionString)) throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
             // Create a new NpgsqlConnection using the connection string from the configuration
