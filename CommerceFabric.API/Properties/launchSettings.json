@@ -4,7 +4,11 @@
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "COMMERCEFABRIC_USERSERVICE_DB_HOST": "localhost",
+        "COMMERCEFABRIC_USERSERVICE_DB_NAME": "userService",
+        "COMMERCEFABRIC_USERSERVICE_DB_USER": "postgres",
+        "COMMERCEFABRIC_USERSERVICE_DB_PASSWORD": "admin",
       },
       "dotnetRunMessages": true,
       "applicationUrl": "http://localhost:5252"
@@ -13,7 +17,11 @@
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "COMMERCEFABRIC_USERSERVICE_DB_HOST": "localhost",
+        "COMMERCEFABRIC_USERSERVICE_DB_NAME": "userService",
+        "COMMERCEFABRIC_USERSERVICE_DB_USER": "postgres",
+        "COMMERCEFABRIC_USERSERVICE_DB_PASSWORD": "admin",
       },
       "dotnetRunMessages": true,
       "applicationUrl": "https://localhost:9091;http://localhost:9090",

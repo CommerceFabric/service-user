@@ -40,5 +40,14 @@ namespace CommerceFabric.Infrastructure.Repositories
 
             return user;
         }
+
+        public async Task<ApplicationUser?> GetUserByUserIDAsync(Guid? userID)
+        {
+            // execute the following SQL query to get the user from the database using Dapper
+            string query = "SELECT * FROM public.users WHERE userid = @UserID";
+            var user = await _dbContext.Connection.QuerySingleOrDefaultAsync<ApplicationUser>(query, new { UserID = userID });
+
+            return user;
+        }
     }
 }

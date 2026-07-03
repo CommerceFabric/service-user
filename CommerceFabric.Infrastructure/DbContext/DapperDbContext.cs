@@ -16,6 +16,8 @@ namespace CommerceFabric.Infrastructure.DbContext
             string? connectionString = _configuration.GetConnectionString("DefaultConnection")!;
             connectionString = connectionString.Replace("$COMMERCEFABRIC_USERSERVICE_DB_HOST", Environment.GetEnvironmentVariable("COMMERCEFABRIC_USERSERVICE_DB_HOST") ?? "localhost");
             connectionString = connectionString.Replace("$COMMERCEFABRIC_USERSERVICE_DB_PASSWORD", Environment.GetEnvironmentVariable("COMMERCEFABRIC_USERSERVICE_DB_PASSWORD") ?? "admin");
+            connectionString = connectionString.Replace("$COMMERCEFABRIC_USERSERVICE_DB_NAME", Environment.GetEnvironmentVariable("COMMERCEFABRIC_USERSERVICE_DB_NAME") ?? "userService");
+            connectionString = connectionString.Replace("$COMMERCEFABRIC_USERSERVICE_DB_USER", Environment.GetEnvironmentVariable("COMMERCEFABRIC_USERSERVICE_DB_USER") ?? "postgres");
 
             if (string.IsNullOrEmpty(connectionString)) throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 

@@ -22,6 +22,11 @@ namespace CommerceFabric.Core.RepositoryContracts
         /// <returns></returns>
         Task<ApplicationUser?> GetUserByEmailAndPasswordAsync(string email, string password); // todo - this is insecure, will soon be replaced with Azure AD B2C auth, just here as a temporary measure to get the project working with a simple login system.
 
-
+        /// <summary>
+        /// Retrieves a user from the database based on the provided user ID.
+        /// </summary>
+        /// <param name="userID"></param>
+        /// <returns></returns>
+        Task<ApplicationUser?> GetUserByUserIDAsync(Guid? userID);
     }
 }

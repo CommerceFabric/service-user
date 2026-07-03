@@ -53,5 +53,14 @@ namespace CommerceFabric.Core.Services
                 Token = "dummy-jwt"
             };
         }
+        public async Task<UserDTO> GetUserByUserIDAsync(Guid? userID)
+        {
+            var user = await _usersRepository.GetUserByUserIDAsync(userID);
+
+            if (user == null) return null;
+
+            return _mapper.Map<UserDTO>(user);
+        }
+
     }
 }

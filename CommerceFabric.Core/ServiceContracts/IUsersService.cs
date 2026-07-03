@@ -25,5 +25,14 @@ namespace CommerceFabric.Core.ServiceContracts
         /// <param name="registerRequest">The registration request containing the user's email and password.</param>
         /// <returns>An AuthenticationResponse object containing the registration result and JWT token if successful.</returns>
         Task<AuthenticationResponse> Register(RegisterRequest registerRequest);
+
+        /// <summary>
+        /// Defines a method for retrieving user information based on the provided user ID.
+        /// The method is responsible for fetching the user details from the data source and returning a User DTO object containing the user's information.
+        /// </summary>
+        /// <param name="userID">The unique identifier of the user.</param>
+        /// <returns>A UserDTO object containing the user's information, or null if the user is not found.</returns>
+        Task<UserDTO> GetUserByUserIDAsync(Guid? userID);
+
     }
 }

@@ -15,8 +15,9 @@ namespace CommerceFabric.Core.Mappers
                 .ForCtorParam(nameof(AuthenticationResponse.Success),
                     opt => opt.MapFrom(_ => false));
 
-            CreateMap<RegisterRequest, ApplicationUser>()
-                .ForMember(dest => dest.Gender, opt => opt.MapFrom(src => src.Gender.ToString()));
+            CreateMap<RegisterRequest, ApplicationUser>();
+
+            CreateMap<ApplicationUser, UserDTO>();
         }
     }
 }
