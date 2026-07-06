@@ -18,6 +18,7 @@ namespace CommerceFabric.Infrastructure.DbContext
             connectionString = connectionString.Replace("$COMMERCEFABRIC_USERSERVICE_DB_PASSWORD", Environment.GetEnvironmentVariable("COMMERCEFABRIC_USERSERVICE_DB_PASSWORD") ?? "admin");
             connectionString = connectionString.Replace("$COMMERCEFABRIC_USERSERVICE_DB_NAME", Environment.GetEnvironmentVariable("COMMERCEFABRIC_USERSERVICE_DB_NAME") ?? "userService");
             connectionString = connectionString.Replace("$COMMERCEFABRIC_USERSERVICE_DB_USER", Environment.GetEnvironmentVariable("COMMERCEFABRIC_USERSERVICE_DB_USER") ?? "postgres");
+            connectionString = connectionString.Replace("$COMMERCEFABRIC_USERSERVICE_DB_PORT", Environment.GetEnvironmentVariable("COMMERCEFABRIC_USERSERVICE_DB_PORT") ?? "5432");
 
             if (string.IsNullOrEmpty(connectionString)) throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
