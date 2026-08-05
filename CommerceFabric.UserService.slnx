@@ -2,4 +2,5 @@
   <Project Path="CommerceFabric.Core/CommerceFabric.Core.csproj" />
   <Project Path="CommerceFabric.Infrastructure/CommerceFabric.Infrastructure.csproj" />
   <Project Path="CommerceFabric.API/CommerceFabric.API.csproj" />
+  <Project Path="UserServiceTests/UserServiceTests.csproj" Id="6085f6ff-b150-4195-a26b-213bb8163150" />
 </Solution>
