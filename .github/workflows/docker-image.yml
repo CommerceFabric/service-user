@@ -120,7 +120,7 @@ jobs:
 
           repository: CommerceFabric/infra-platform
 
-          event-type: deploy-users
+          event-type: deploy-user
 
           client-payload: |
             {
