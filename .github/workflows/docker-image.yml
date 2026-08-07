@@ -31,10 +31,10 @@ jobs:
           dotnet-version: "10.0.x"
 
       - name: Restore dependencies
-        run: dotnet restore
-
+        run: dotnet restore CommerceFabric.API/CommerceFabric.API.csproj
+        
       - name: Run tests
-        run: dotnet test --no-restore --verbosity normal
+        run: dotnet test CommerceFabric.API/CommerceFabric.API.csproj --no-restore --verbosity normal
 
 
   # ==========================================
