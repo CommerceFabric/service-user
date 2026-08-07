@@ -21,6 +21,12 @@ services:
     build:
       context: .
       dockerfile: CommerceFabric.API/Dockerfile
+    environment:
+      COMMERCEFABRIC_USERSERVICE_DB_HOST: postgressql-userservice
+      COMMERCEFABRIC_USERSERVICE_DB_PASSWORD: admin
+      COMMERCEFABRIC_USERSERVICE_DB_PORT: "5432"
+      COMMERCEFABRIC_USERSERVICE_DB_NAME: userService
+      COMMERCEFABRIC_USERSERVICE_DB_USER: postgres
     ports:
       - "9090:8080"
     networks:

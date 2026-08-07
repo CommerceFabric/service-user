@@ -6,6 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>bb79f05d-e9c9-490a-a4dc-5e4d973a08c5</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,8 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CommerceFabric.Core\CommerceFabric.Core.csproj" />
-    <ProjectReference
-      Include="..\CommerceFabric.Infrastructure\CommerceFabric.Infrastructure.csproj" />
+    <ProjectReference Include="..\CommerceFabric.Infrastructure\CommerceFabric.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
