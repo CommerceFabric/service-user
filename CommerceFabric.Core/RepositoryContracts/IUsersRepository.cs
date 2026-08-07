@@ -15,12 +15,11 @@ namespace CommerceFabric.Core.RepositoryContracts
         Task<ApplicationUser> CreateAsync(ApplicationUser user);
 
         /// <summary>
-        /// Retrieves a user from the database based on the provided email and password.
+        /// Updates an existing user in the database.
         /// </summary>
-        /// <param name="email"></param>
-        /// <param name="password"></param>
+        /// <param name="user"></param>
         /// <returns></returns>
-        Task<ApplicationUser?> GetUserByEmailAndPasswordAsync(string email, string password); // todo - this is insecure, will soon be replaced with Azure AD B2C auth, just here as a temporary measure to get the project working with a simple login system.
+        Task<ApplicationUser> UpdateAsync(ApplicationUser user);
 
         /// <summary>
         /// Retrieves a user from the database based on the provided user ID.

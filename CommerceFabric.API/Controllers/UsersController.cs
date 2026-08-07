@@ -28,5 +28,20 @@ namespace CommerceFabric.API.Controllers
 
             return Ok(result);
         }
+
+        [HttpPut("{userID}")]
+        public async Task<IActionResult> UpdateUser(Guid? userID, UpdateUserDetailsRequest updateUserRequest)
+        {
+            if(userID == null) return BadRequest("User ID cannot be null");
+            if(updateUserRequest == null) return BadRequest("Update request cannot be null");
+
+            var userExists = await _usersService.GetUserByUserIDAsync(userID) != null;
+            if (!userExists) return NotFound($"User with ID {userID} not found.");
+
+            var success = await _usersService.UpdateUserDetailsAsync(userID, updateUserRequest);
+            if (!success) return BadRequest($"Failed to update user with ID {userID}.");
+
+            return NoContent();
+        }
     }
 }

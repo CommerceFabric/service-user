@@ -4,7 +4,6 @@ using CommerceFabric.Infrastructure.DbContext;
 using CommerceFabric.Infrastructure.Repositories;
 using Microsoft.Extensions.Configuration;
 using Npgsql;
-using System.Reflection;
 using Testcontainers.PostgreSql;
 using Xunit;
 
@@ -60,10 +59,8 @@ namespace CommerceFabric.Infrastructure.Tests.Repositories
                 CREATE TABLE public.users
                 (
                     userid UUID PRIMARY KEY,
-                    email TEXT NOT NULL,
-                    password TEXT NOT NULL,
-                    personname TEXT NOT NULL,
-                    gender TEXT NOT NULL
+                    gender VARCHAR(50) NOT NULL,
+                    bio VARCHAR(500)
                 );
                 """;
 
@@ -81,10 +78,8 @@ namespace CommerceFabric.Infrastructure.Tests.Repositories
             // Arrange
             var user = new ApplicationUser
             {
-                Email = "test@example.com",
-                Password = "password123",
-                PersonName = "Test User",
-                Gender = "Male"
+                Gender = "Male",
+                Bio = "Test user bio"
             };
 
             // Act
@@ -92,59 +87,8 @@ namespace CommerceFabric.Infrastructure.Tests.Repositories
 
             // Assert
             Assert.NotEqual(Guid.Empty, result.UserID);
-            Assert.Equal("test@example.com", result.Email);
-            Assert.Equal("password123", result.Password);
-            Assert.Equal("Test User", result.PersonName);
-            Assert.Equal("Male", result.Gender);
-        }
-
-        [Fact]
-        public async Task GetUserByEmailAndPasswordAsync_ShouldReturnUser()
-        {
-            // Arrange
-            var user = new ApplicationUser
-            {
-                Email = "test@example.com",
-                Password = "password123",
-                PersonName = "Test User",
-                Gender = "Male"
-            };
-
-            await _repository.CreateAsync(user);
-
-            // Act
-            var result = await _repository.GetUserByEmailAndPasswordAsync(
-                "test@example.com",
-                "password123");
-
-            // Assert
-            Assert.NotNull(result);
-            Assert.Equal(user.UserID, result.UserID);
-            Assert.Equal(user.Email, result.Email);
-            Assert.Equal(user.PersonName, result.PersonName);
-        }
-
-        [Fact]
-        public async Task GetUserByEmailAndPasswordAsync_ShouldReturnNull_WhenCredentialsAreIncorrect()
-        {
-            // Arrange
-            var user = new ApplicationUser
-            {
-                Email = "test@example.com",
-                Password = "password123",
-                PersonName = "Test User",
-                Gender = "Male"
-            };
-
-            await _repository.CreateAsync(user);
-
-            // Act
-            var result = await _repository.GetUserByEmailAndPasswordAsync(
-                "test@example.com",
-                "wrongpassword");
-
-            // Assert
-            Assert.Null(result);
+            Assert.Equal(user.Gender, result.Gender);
+            Assert.Equal(user.Bio, result.Bio);
         }
 
         [Fact]
@@ -153,10 +97,9 @@ namespace CommerceFabric.Infrastructure.Tests.Repositories
             // Arrange
             var user = new ApplicationUser
             {
-                Email = "test@example.com",
-                Password = "password123",
-                PersonName = "Test User",
-                Gender = "Male"
+                UserID = Guid.NewGuid(),
+                Gender = "Female",
+                Bio = "Test user bio"
             };
 
             await _repository.CreateAsync(user);
@@ -166,9 +109,9 @@ namespace CommerceFabric.Infrastructure.Tests.Repositories
 
             // Assert
             Assert.NotNull(result);
-            Assert.Equal(user.UserID, result.UserID);
-            Assert.Equal(user.Email, result.Email);
-            Assert.Equal(user.PersonName, result.PersonName);
+            Assert.Equal(user.UserID, result!.UserID);
+            Assert.Equal(user.Gender, result.Gender);
+            Assert.Equal(user.Bio, result.Bio);
         }
 
         [Fact]
@@ -182,6 +125,60 @@ namespace CommerceFabric.Infrastructure.Tests.Repositories
 
             // Assert
             Assert.Null(result);
+        }
+
+        [Fact]
+        public async Task UpdateAsync_ShouldUpdateUser()
+        {
+            // Arrange
+            var user = new ApplicationUser
+            {
+                UserID = Guid.NewGuid(),
+                Gender = "Male",
+                Bio = "Original bio"
+            };
+
+            await _repository.CreateAsync(user);
+
+            user.Gender = "Female";
+            user.Bio = "Updated bio";
+
+            // Act
+            var result = await _repository.UpdateAsync(user);
+
+            // Assert returned user
+            Assert.Equal(user.UserID, result.UserID);
+            Assert.Equal("Female", result.Gender);
+            Assert.Equal("Updated bio", result.Bio);
+
+            // Assert database was actually updated
+            var updatedUser = await _repository.GetUserByUserIDAsync(user.UserID);
+
+            Assert.NotNull(updatedUser);
+            Assert.Equal(user.UserID, updatedUser!.UserID);
+            Assert.Equal("Female", updatedUser.Gender);
+            Assert.Equal("Updated bio", updatedUser.Bio);
+        }
+
+        [Fact]
+        public async Task UpdateAsync_ShouldThrowException_WhenUserDoesNotExist()
+        {
+            // Arrange
+            var user = new ApplicationUser
+            {
+                UserID = Guid.NewGuid(),
+                Gender = "Male",
+                Bio = "Updated bio"
+            };
+
+            // Act
+            var exception = await Assert.ThrowsAsync<Exception>(
+                () => _repository.UpdateAsync(user));
+
+            // Assert
+            Assert.Equal(
+                "Failed to update user in the database.",
+                exception.Message);
         }
     }
 }

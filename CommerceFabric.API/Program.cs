@@ -10,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add dependency injection services to the service collection
 builder.Services.AddInfrastructureServices();
-builder.Services.AddCoreServices();
+builder.Services.AddCoreServices(builder.Configuration);
 
 // Add controllers to the service collection
 builder.Services.AddControllers()
