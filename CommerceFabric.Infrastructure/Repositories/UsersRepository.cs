@@ -17,6 +17,8 @@ namespace CommerceFabric.Infrastructure.Repositories
 
         public async Task<ApplicationUser> CreateAsync(ApplicationUser user)
         {
+            if (user.UserID == Guid.Empty) user.UserID = Guid.NewGuid();
+
             // execute the following SQL query to insert the user into the database using Dapper
             string query =
                 "INSERT INTO public.users (userid, gender, bio) " +
