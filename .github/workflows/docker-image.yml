@@ -88,7 +88,6 @@ jobs:
             --tag $ACR_LOGIN_SERVER/$ACR_IMAGE_NAME:latest \
             --tag $DOCKERHUB_IMAGE_NAME:$USER_VERSION \
             --tag $DOCKERHUB_IMAGE_NAME:latest \
-            --env COMMERCEFABRIC_AZURE_ENTRA_CLIENT_SECRET= ${{ secrets.AZURE_ENTRA_CLIENT_SECRET }} \
             .
             
       # ==========================================
